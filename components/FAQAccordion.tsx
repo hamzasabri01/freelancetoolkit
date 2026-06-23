@@ -1,14 +1,12 @@
 export function FAQAccordion({ items }: { items: { question: string; answer: string }[] }) {
   return (
-    <div className="space-y-2">
+    <section className="space-y-4">
       {items.map((item) => (
-        <details key={item.question} open className="rounded-xl border border-slate-200 bg-white px-4 py-4 sm:px-5">
-          <summary className="cursor-pointer list-none text-sm font-semibold text-ink marker:hidden">
-            {item.question}
-          </summary>
-          <div className="mt-2 text-sm leading-6 text-ink-muted">{item.answer}</div>
-        </details>
+        <article key={item.question} className="rounded-xl border border-slate-200 bg-white px-4 py-4 sm:px-5">
+          <h3 className="text-sm font-semibold text-ink">{item.question}</h3>
+          <p className="mt-2 text-sm leading-6 text-ink-muted">{item.answer}</p>
+        </article>
       ))}
-    </div>
+    </section>
   );
 }
