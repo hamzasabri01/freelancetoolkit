@@ -27,6 +27,7 @@ type GuideInput = {
 type GeneratedGuideBlock = "example" | "formula" | "comparison" | "mistakes" | "tips";
 type GuideContentOverride = Partial<Pick<Guide, "sections" | "faqs" | "formulaCards" | "comparisonTables" | "commonMistakes" | "actionableTips">> & {
   hideGeneratedBlocks?: GeneratedGuideBlock[];
+  showGeneratedBlocks?: boolean;
 };
 
 export type Guide = GuideInput & {
@@ -104,6 +105,7 @@ const seoProfiles: Record<string, Pick<Guide, "primaryKeyword" | "secondaryKeywo
 
 const guideContentOverrides: Partial<Record<string, GuideContentOverride>> = {
   "how-much-should-i-charge-as-a-freelancer": {
+    showGeneratedBlocks: false,
     hideGeneratedBlocks: ["example", "formula", "comparison", "mistakes", "tips"],
   },
   "salary-to-hourly-rate-explained": {
@@ -486,7 +488,8 @@ function createGuide(input: GuideInput): Guide {
   const seoProfile = seoProfiles[input.slug];
   const rawSections = override?.sections ?? input.sections;
   const effectiveFaqs = override?.faqs ?? input.faqs;
-  const hiddenGeneratedBlocks = new Set<GeneratedGuideBlock>(override?.hideGeneratedBlocks ?? []);
+  const hideAllGeneratedBlocks = override?.showGeneratedBlocks === false;
+  const hiddenGeneratedBlocks = new Set<GeneratedGuideBlock>(hideAllGeneratedBlocks ? ["example", "formula", "comparison", "mistakes", "tips"] : (override?.hideGeneratedBlocks ?? []));
   const hasEditorialExample = hasSectionMatch(rawSections, ["example", "scenario", "calculation"]);
   const hasEditorialFormula = hasSectionMatch(rawSections, ["formula"]);
   const hasEditorialComparison = hasSectionMatch(rawSections, ["comparison", " vs "]);
