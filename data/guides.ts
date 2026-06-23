@@ -24,6 +24,11 @@ type GuideInput = {
   faqs: GuideFaq[];
 };
 
+type GeneratedGuideBlock = "example" | "formula" | "comparison" | "mistakes" | "tips";
+type GuideContentOverride = Partial<Pick<Guide, "sections" | "faqs" | "formulaCards" | "comparisonTables" | "commonMistakes" | "actionableTips">> & {
+  hideGeneratedBlocks?: GeneratedGuideBlock[];
+};
+
 export type Guide = GuideInput & {
   metaTitle: string;
   primaryKeyword: string;
@@ -97,7 +102,10 @@ const seoProfiles: Record<string, Pick<Guide, "primaryKeyword" | "secondaryKeywo
   },
 };
 
-const guideContentOverrides: Partial<Record<string, Partial<Pick<Guide, "sections" | "faqs" | "formulaCards" | "comparisonTables" | "commonMistakes" | "actionableTips">>>> = {
+const guideContentOverrides: Partial<Record<string, GuideContentOverride>> = {
+  "how-much-should-i-charge-as-a-freelancer": {
+    hideGeneratedBlocks: ["example", "formula", "comparison", "mistakes", "tips"],
+  },
   "salary-to-hourly-rate-explained": {
     formulaCards: [{ title: "Salary to hourly rate formula", formula: "Hourly Rate = Annual Salary / (Hours Per Week x Weeks Per Year)", description: "Use gross annual salary and the paid or working weeks that match the comparison you are making. The output is a gross hourly equivalent, not a take-home pay estimate." }],
     comparisonTables: [{
@@ -478,16 +486,17 @@ function createGuide(input: GuideInput): Guide {
   const seoProfile = seoProfiles[input.slug];
   const rawSections = override?.sections ?? input.sections;
   const effectiveFaqs = override?.faqs ?? input.faqs;
+  const hiddenGeneratedBlocks = new Set<GeneratedGuideBlock>(override?.hideGeneratedBlocks ?? []);
   const hasEditorialExample = hasSectionMatch(rawSections, ["example", "scenario", "calculation"]);
   const hasEditorialFormula = hasSectionMatch(rawSections, ["formula"]);
   const hasEditorialComparison = hasSectionMatch(rawSections, ["comparison", " vs "]);
   const hasEditorialCommonMistakes = hasSectionMatch(rawSections, ["mistake"]);
   const hasEditorialNextSteps = hasSectionMatch(rawSections, ["next step", "use calculator", "use calculators", "use the calculator", "get paid faster"]);
-  const effectiveFormulaCards = hasEditorialFormula ? [] : (override?.formulaCards ?? (enhancement.formula ? [enhancement.formula] : []));
-  const effectiveComparisonTables = hasEditorialComparison ? [] : (override?.comparisonTables ?? (enhancement.comparison ? [enhancement.comparison] : []));
-  const effectiveCommonMistakes = hasEditorialCommonMistakes ? [] : (override?.commonMistakes ?? enhancement.mistakes);
-  const effectiveExamples = hasEditorialExample ? [] : [{ title: enhancement.scenarioTitle, body: enhancement.scenario }];
-  const effectiveActionableTips = hasEditorialNextSteps ? [] : (override?.actionableTips ?? enhancement.actionTips);
+  const effectiveFormulaCards = hiddenGeneratedBlocks.has("formula") || hasEditorialFormula ? [] : (override?.formulaCards ?? (enhancement.formula ? [enhancement.formula] : []));
+  const effectiveComparisonTables = hiddenGeneratedBlocks.has("comparison") || hasEditorialComparison ? [] : (override?.comparisonTables ?? (enhancement.comparison ? [enhancement.comparison] : []));
+  const effectiveCommonMistakes = hiddenGeneratedBlocks.has("mistakes") || hasEditorialCommonMistakes ? [] : (override?.commonMistakes ?? enhancement.mistakes);
+  const effectiveExamples = hiddenGeneratedBlocks.has("example") || hasEditorialExample ? [] : [{ title: enhancement.scenarioTitle, body: enhancement.scenario }];
+  const effectiveActionableTips = hiddenGeneratedBlocks.has("tips") || hasEditorialNextSteps ? [] : (override?.actionableTips ?? enhancement.actionTips);
   const effectiveSections = rawSections;
   const fixedContentBlocks: GuideTableOfContentsItem[] = [
     { id: "key-takeaways", title: "Key takeaways" },

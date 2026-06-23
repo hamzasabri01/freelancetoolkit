@@ -22,7 +22,7 @@ const featuredToolSlugs = [
   "invoice-generator",
 ] as const;
 const featuredTools = featuredToolSlugs.map((slug) => tools.find((tool) => tool.slug === slug)).filter((tool): tool is (typeof tools)[number] => Boolean(tool));
-const homeFaqs = [
+export const homeFaqs = [
   { question: "Are all FreelanceToolKit calculators free?", answer: "Yes. Every calculator is free to use and requires no account." },
   { question: "Do the tools save my financial information?", answer: "No. Calculations run locally in your browser. The current site has no account or backend database." },
   { question: "Can I use the results in a client proposal?", answer: "You can use them as planning inputs, but review the assumptions and adapt the result to your project, market, taxes, and agreement." },
