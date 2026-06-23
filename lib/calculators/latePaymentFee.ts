@@ -1,0 +1,2 @@
+import type { CalculatorResult, LatePaymentFeeInputs } from "@/lib/calculators/types";
+export function calculateLatePaymentFee(input: LatePaymentFeeInputs): CalculatorResult { const dailyInterest = input.invoice * input.annualRate / 100 / 365; const lateFee = dailyInterest * input.days; return { primary: lateFee, kind: "currency", details: [{ label: "Original invoice", value: input.invoice, kind: "currency" }, { label: "Daily simple interest", value: dailyInterest, kind: "currency" }, { label: "Balance including fee", value: input.invoice + lateFee, kind: "currency" }] }; }

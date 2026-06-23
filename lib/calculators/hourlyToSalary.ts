@@ -1,0 +1,2 @@
+import type { CalculatorResult, HourlyToSalaryInputs } from "@/lib/calculators/types";
+export function calculateHourlyToSalary(input: HourlyToSalaryInputs): CalculatorResult { const weeklyGross = input.hourly * input.hoursWeek; const annualGross = weeklyGross * input.weeksYear; return { primary: annualGross, kind: "currency", details: [{ label: "Monthly average", value: annualGross / 12, kind: "currency" }, { label: "Weekly gross", value: weeklyGross, kind: "currency" }, { label: "Working hours / year", value: input.hoursWeek * input.weeksYear, kind: "number" }] }; }

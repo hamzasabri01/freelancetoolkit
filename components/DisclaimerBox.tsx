@@ -1,0 +1,2 @@
+import { Info } from "lucide-react";
+export function DisclaimerBox({ children }: { children: React.ReactNode }) { return <aside className="flex gap-3 rounded-xl border border-amber-200 bg-amber-50/80 p-4 text-xs leading-5 text-amber-950 shadow-[0_1px_2px_rgba(146,64,14,.04)]" aria-label="Important estimate note"><span className="grid size-7 shrink-0 place-items-center rounded-lg bg-amber-100 text-amber-800"><Info size={15} aria-hidden="true" /></span><div><p className="font-bold">Important estimate note</p><p className="mt-1 text-amber-900">{children}</p></div></aside>; }

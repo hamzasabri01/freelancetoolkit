@@ -1,0 +1,3 @@
+import { tools } from "@/data/tools";
+import { ToolCard } from "@/components/ToolCard";
+export function RelatedTools({ currentSlug, category }: { currentSlug: string; category: string }) { const related = [...tools].filter((t) => t.slug !== currentSlug).sort((a, b) => Number(b.category === category) - Number(a.category === category)).slice(0, 3); return <section className="mt-16"><div className="mb-6"><p className="section-kicker">Keep exploring</p><h2 className="section-title">Related tools</h2></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{related.map((tool) => <ToolCard key={tool.slug} tool={tool} />)}</div></section>; }

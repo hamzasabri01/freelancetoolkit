@@ -1,0 +1,2 @@
+import type { CalculatorResult, InvoiceInputs } from "@/lib/calculators/types";
+export function calculateInvoice(input: InvoiceInputs): CalculatorResult { const subtotal = input.quantity * input.rate; const taxableSubtotal = subtotal - input.discount; const tax = taxableSubtotal * input.taxRate / 100; return { primary: taxableSubtotal + tax, kind: "currency", details: [{ label: "Subtotal", value: subtotal, kind: "currency" }, { label: "Discount", value: input.discount, kind: "currency" }, { label: "Tax", value: tax, kind: "currency" }] }; }

@@ -1,0 +1,2 @@
+import type { CalculatorResult, SaasCostInputs } from "@/lib/calculators/types";
+export function calculateSaasCost(input: SaasCostInputs): CalculatorResult { const annualSpend = input.monthly * 12 + input.annual; const unused = annualSpend * input.unusedRate / 100; return { primary: annualSpend, kind: "currency", details: [{ label: "Monthly average", value: annualSpend / 12, kind: "currency" }, { label: "Potentially unused", value: unused, kind: "currency" }, { label: "Potential optimized spend", value: annualSpend - unused, kind: "currency" }] }; }
