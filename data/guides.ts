@@ -463,6 +463,14 @@ const guideInputs: GuideInput[] = [
   },
 ];
 
+const normalizeSectionText = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+const sectionText = (section: GuideSection) => normalizeSectionText(`${section.id} ${section.title}`);
+const hasSectionMatch = (sections: GuideSection[], keywords: string[]) =>
+  sections.some((section) => {
+    const text = sectionText(section);
+    return keywords.some((keyword) => text.includes(keyword));
+  });
+
 function createGuide(input: GuideInput): Guide {
   const enhancement = guideEnhancements[input.slug];
   const override = guideContentOverrides[input.slug];
@@ -470,17 +478,24 @@ function createGuide(input: GuideInput): Guide {
   const seoProfile = seoProfiles[input.slug];
   const rawSections = override?.sections ?? input.sections;
   const effectiveFaqs = override?.faqs ?? input.faqs;
-  const effectiveFormulaCards = override?.formulaCards ?? (enhancement.formula ? [enhancement.formula] : []);
-  const effectiveComparisonTables = override?.comparisonTables ?? (enhancement.comparison ? [enhancement.comparison] : []);
-  const effectiveCommonMistakes = override?.commonMistakes ?? enhancement.mistakes;
-  const effectiveSections = effectiveCommonMistakes.length ? rawSections.filter((section) => section.id !== "common-mistakes") : rawSections;
+  const hasEditorialExample = hasSectionMatch(rawSections, ["example", "scenario", "calculation"]);
+  const hasEditorialFormula = hasSectionMatch(rawSections, ["formula"]);
+  const hasEditorialComparison = hasSectionMatch(rawSections, ["comparison", " vs "]);
+  const hasEditorialCommonMistakes = hasSectionMatch(rawSections, ["mistake"]);
+  const hasEditorialNextSteps = hasSectionMatch(rawSections, ["next step", "use calculator", "use calculators", "use the calculator", "get paid faster"]);
+  const effectiveFormulaCards = hasEditorialFormula ? [] : (override?.formulaCards ?? (enhancement.formula ? [enhancement.formula] : []));
+  const effectiveComparisonTables = hasEditorialComparison ? [] : (override?.comparisonTables ?? (enhancement.comparison ? [enhancement.comparison] : []));
+  const effectiveCommonMistakes = hasEditorialCommonMistakes ? [] : (override?.commonMistakes ?? enhancement.mistakes);
+  const effectiveExamples = hasEditorialExample ? [] : [{ title: enhancement.scenarioTitle, body: enhancement.scenario }];
+  const effectiveActionableTips = hasEditorialNextSteps ? [] : (override?.actionableTips ?? enhancement.actionTips);
+  const effectiveSections = rawSections;
   const fixedContentBlocks: GuideTableOfContentsItem[] = [
     { id: "key-takeaways", title: "Key takeaways" },
-    { id: "practical-example", title: "Practical example" },
+    ...(effectiveExamples.length ? [{ id: "practical-example", title: "Practical example" }] : []),
     ...(effectiveFormulaCards.length ? [{ id: "formula", title: "Formula" }] : []),
     ...(effectiveComparisonTables.length ? [{ id: "comparison", title: "Comparison" }] : []),
-    { id: "common-mistakes", title: "Common mistakes" },
-    { id: "next-steps", title: "Next steps" },
+    ...(effectiveCommonMistakes.length ? [{ id: "common-mistakes", title: "Common mistakes" }] : []),
+    ...(effectiveActionableTips.length ? [{ id: "next-steps", title: "Next steps" }] : []),
     ...(effectiveFaqs.length ? [{ id: "faq", title: "FAQ" }] : []),
   ];
 
@@ -503,11 +518,11 @@ function createGuide(input: GuideInput): Guide {
       ...fixedContentBlocks.slice(1),
     ],
     keyTakeaways: enhancement.takeaways,
-    examples: [{ title: enhancement.scenarioTitle, body: enhancement.scenario }],
+    examples: effectiveExamples,
     formulaCards: effectiveFormulaCards,
     comparisonTables: effectiveComparisonTables,
     commonMistakes: effectiveCommonMistakes,
-    actionableTips: override?.actionableTips ?? enhancement.actionTips,
+    actionableTips: effectiveActionableTips,
     relatedTools: input.relatedToolSlugs,
     relatedGuides: enhancement.relatedGuideSlugs,
     disclaimer: "This guide provides general educational information only and should not be considered financial, tax, legal, or professional advice.",

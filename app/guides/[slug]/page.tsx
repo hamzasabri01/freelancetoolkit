@@ -153,13 +153,15 @@ export default async function GuidePage({ params }: Props) {
             </section>
           ))}
 
-          <div id="practical-example" className="scroll-mt-24 pt-8">
-            {guide.examples.map((example) => (
-              <ExampleScenario key={example.title} title={example.title}>
-                <p>{example.body}</p>
-              </ExampleScenario>
-            ))}
-          </div>
+          {guide.examples.length > 0 && (
+            <div id="practical-example" className="scroll-mt-24 pt-8">
+              {guide.examples.map((example) => (
+                <ExampleScenario key={example.title} title={example.title}>
+                  <p>{example.body}</p>
+                </ExampleScenario>
+              ))}
+            </div>
+          )}
 
           {guide.formulaCards.length > 0 && (
             <div id="formula" className="mt-6 scroll-mt-24 space-y-6">
@@ -173,19 +175,23 @@ export default async function GuidePage({ params }: Props) {
             </div>
           )}
 
-          <div id="common-mistakes" className="scroll-mt-24 pt-8">
-            <CommonMistakes items={guide.commonMistakes} />
-          </div>
-
-          <section id="next-steps" className="scroll-mt-24 pt-8">
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-              <p className="section-kicker">Actionable tips</p>
-              <h2 className="mt-2 font-display text-xl font-bold text-ink">What to do next</h2>
-              <ul className="mt-4 grid gap-3">
-                {guide.actionableTips.map((tip) => <li key={tip} className="rounded-xl bg-surface-soft p-4 text-sm leading-6 text-ink-soft">{tip}</li>)}
-              </ul>
+          {guide.commonMistakes.length > 0 && (
+            <div id="common-mistakes" className="scroll-mt-24 pt-8">
+              <CommonMistakes items={guide.commonMistakes} />
             </div>
-          </section>
+          )}
+
+          {guide.actionableTips.length > 0 && (
+            <section id="next-steps" className="scroll-mt-24 pt-8">
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+                <p className="section-kicker">Actionable tips</p>
+                <h2 className="mt-2 font-display text-xl font-bold text-ink">What to do next</h2>
+                <ul className="mt-4 grid gap-3">
+                  {guide.actionableTips.map((tip) => <li key={tip} className="rounded-xl bg-surface-soft p-4 text-sm leading-6 text-ink-soft">{tip}</li>)}
+                </ul>
+              </div>
+            </section>
+          )}
 
           <div className="mt-10">
             <DisclaimerBox>{guide.disclaimer}</DisclaimerBox>
