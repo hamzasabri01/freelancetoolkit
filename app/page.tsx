@@ -23,7 +23,7 @@ const featuredToolSlugs = [
 ] as const;
 const featuredTools = featuredToolSlugs.map((slug) => tools.find((tool) => tool.slug === slug)).filter((tool): tool is (typeof tools)[number] => Boolean(tool));
 export const homeFaqs = [
-  { question: "Are all FreelanceToolKit calculators free?", answer: "Yes. Every calculator is free to use and requires no account." },
+  { question: "Are all Freelance Work Tools calculators free?", answer: "Yes. Every calculator is free to use and requires no account." },
   { question: "Do the tools save my financial information?", answer: "No. Calculations run locally in your browser. The current site has no account or backend database." },
   { question: "Can I use the results in a client proposal?", answer: "You can use them as planning inputs, but review the assumptions and adapt the result to your project, market, taxes, and agreement." },
 ];
@@ -56,7 +56,7 @@ export default function HomePage() {
     <section className="bg-surface-soft py-16 sm:py-20"><div className="section-wrap"><div className="mb-8"><p className="section-kicker">Browse by focus</p><h2 className="section-title">Find the right starting point</h2></div><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{categories.map((category) => <CategoryCard key={category.name} {...category} count={tools.filter((tool) => tool.category === category.name).length} />)}</div></div></section>
     <section className="section-wrap py-16 sm:py-20">
       <div className="mb-8 max-w-2xl">
-        <p className="section-kicker">How FreelanceToolKit works</p>
+        <p className="section-kicker">How Freelance Work Tools works</p>
         <h2 className="section-title">A calmer workflow for business numbers</h2>
         <p className="section-copy">The site keeps the calculator first, then adds context so you can understand the assumptions instead of blindly copying an output.</p>
       </div>

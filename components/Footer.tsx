@@ -35,7 +35,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-4 pt-6 text-xs sm:pt-7 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p>© {new Date().getFullYear()} FreelanceToolKit. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Freelance Work Tools. All rights reserved.</p>
             <p className="mt-1 max-w-2xl leading-5 text-white/50">Calculators provide estimates for educational and planning purposes, not financial, tax, or legal advice.</p>
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
