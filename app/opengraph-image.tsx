@@ -1,6 +1,6 @@
-import { ImageResponse } from "next/og";
+﻿import { ImageResponse } from "next/og";
 
-export const alt = "FreelanceToolKit — clear calculators for independent work";
+export const alt = "Freelance Work Tools - clear calculators for independent work";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -34,10 +34,10 @@ export default function OpenGraphImage() {
             fontWeight: 700,
           }}
         >
-          ↗
+          FT
         </div>
         <div style={{ display: "flex", fontSize: 34, fontWeight: 700 }}>
-          Freelance<span style={{ color: "#2563EB" }}>ToolKit</span>
+          Freelance <span style={{ color: "#2563EB" }}>Work Tools</span>
         </div>
       </div>
       <div style={{ marginTop: 52, maxWidth: 900, fontSize: 68, lineHeight: 1.08, letterSpacing: "-2px", fontWeight: 700 }}>

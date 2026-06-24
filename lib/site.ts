@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://www.freelanceworktools.com");
 
 export const siteConfig = {
-  name: "FreelanceToolKit",
-  description: "Free, practical calculators for freelancers, contractors, and independent professionals.",
+  name: "Freelance Work Tools",
+  defaultTitle: "Freelance Work Tools | Free Calculators for Freelancers",
+  description: "Free calculators and practical guides for freelancers, consultants, and remote professionals. Estimate rates, project prices, billable hours, invoices, and real income.",
   url: siteUrl.replace(/\/$/, ""),
   locale: "en_US",
   category: "business",
@@ -19,14 +20,14 @@ export const siteConfig = {
 } as const;
 
 export function createMetadata(title: string, description: string, path = ""): Metadata {
-  const pageTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
+  const pageTitle = title === siteConfig.name || title.includes(siteConfig.name) ? title : `${title} | ${siteConfig.name}`;
   const url = `${siteConfig.url}${path}`;
   const imagePath = path.startsWith("/guides") ? siteConfig.images.guides : path.startsWith("/tools") ? siteConfig.images.tools : siteConfig.images.default;
   const socialImage = {
     url: imagePath,
     width: 1200,
     height: 630,
-    alt: "FreelanceToolKit - clear calculators and guides for independent work",
+    alt: "Freelance Work Tools - clear calculators and guides for independent work",
   };
 
   return {

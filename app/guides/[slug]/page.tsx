@@ -52,8 +52,8 @@ export default async function GuidePage({ params }: Props) {
     image: `${siteConfig.url}${guide.schemaImage}`,
     keywords: [guide.primaryKeyword, ...guide.secondaryKeywords],
     audience: guide.audience,
-    author: { "@type": "Organization", name: "FreelanceToolKit editorial" },
-    publisher: { "@type": "Organization", name: "FreelanceToolKit" },
+    author: { "@type": "Organization", name: "Freelance Work Tools editorial" },
+    publisher: { "@type": "Organization", name: "Freelance Work Tools" },
     mainEntityOfPage: `${siteConfig.url}/guides/${guide.slug}`,
   };
   const breadcrumbSchema = {
@@ -95,7 +95,7 @@ export default async function GuidePage({ params }: Props) {
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-7 text-ink-muted">{guide.excerpt}</p>
               <p className="mt-5 text-xs font-medium text-ink-muted">
-                FreelanceToolKit editorial · {guide.readingTime} · Updated {guide.lastUpdated}
+                Freelance Work Tools editorial · {guide.readingTime} · Updated {guide.lastUpdated}
               </p>
             </div>
             <ArticleHeroVisual src={guide.heroVisual.src} alt={guide.heroVisual.alt} />

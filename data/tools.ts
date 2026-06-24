@@ -37,7 +37,7 @@ export type Tool = {
 const commonFaqs = (name: string) => [
   { question: `Is the ${name} free?`, answer: "Yes. It is free to use, requires no account, and your entries stay in your browser." },
   { question: "How accurate is this estimate?", answer: "The result is a planning estimate based on the values you provide. Taxes, local rules, and individual circumstances can change the real outcome." },
-  { question: "Does FreelanceToolKit store my financial data?", answer: "No. This calculator runs in your browser and does not send your entries to a server." },
+  { question: "Does Freelance Work Tools store my financial data?", answer: "No. This calculator runs in your browser and does not send your entries to a server." },
 ];
 
 export const tools: Tool[] = [

@@ -109,7 +109,7 @@ export default function GuidesPage() {
         <div className="mt-14 rounded-2xl border border-blue-100 bg-blue-50 p-6 sm:p-8">
           <h2 className="font-display text-xl font-bold text-ink">Editorial principles</h2>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-ink-muted">
-            FreelanceToolKit publishes practical educational content. We avoid invented credentials and guarantees, identify estimates clearly, and separate general information from financial, tax, legal, or professional advice.
+            Freelance Work Tools publishes practical educational content. We avoid invented credentials and guarantees, identify estimates clearly, and separate general information from financial, tax, legal, or professional advice.
           </p>
         </div>
       </section>

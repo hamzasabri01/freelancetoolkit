@@ -1,4 +1,4 @@
-# FreelanceToolKit
+# Freelance Work Tools
 
 A production-oriented Next.js App Router website for practical freelance and independent-work calculators.
 
