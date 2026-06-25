@@ -56,6 +56,11 @@ export default async function CalculatorPage({ params }: Props) {
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   };
   const schemas = [softwareApplicationSchema, breadcrumbSchema, faqSchema];
+  const useSteps = [
+    { number: "01", title: "Enter your figures", copy: "Use realistic values from your own work and records." },
+    { number: "02", title: "Review the estimate", copy: "Read the supporting breakdown, not only the headline." },
+    { number: "03", title: "Adjust your assumptions", copy: "Test a conservative and an optimistic scenario." },
+  ];
 
   return <>
     {schemas.map((schema, index) => (
@@ -63,13 +68,10 @@ export default async function CalculatorPage({ params }: Props) {
     ))}
     <div className="bg-surface-soft py-6 sm:py-10 lg:py-12"><div className="section-wrap"><CalculatorLayout tool={tool} exchangeRates={exchangeRates} holidayData={holidayData} /></div></div>
     <section className="section-wrap py-12 sm:py-16 lg:py-20">
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-12">
-        <article>
-          <p className="section-kicker">How to use it</p><h2 className="section-title">A useful estimate starts with honest inputs</h2><p className="section-copy">{tool.intro}</p>
-          <div className="mt-7 grid gap-4 md:grid-cols-3">{["Enter your figures", "Review the estimate", "Adjust your assumptions"].map((step, index) => <div key={step} className="rounded-xl border border-slate-200 bg-white p-5 transition duration-200 hover:border-blue-200 hover:shadow-card"><span className="font-display text-3xl font-bold text-blue-100" aria-hidden="true">0{index + 1}</span><h3 className="mt-3 text-sm font-bold text-ink">{step}</h3><p className="mt-2 text-xs leading-5 text-ink-muted">{index === 0 ? "Use realistic values from your own work and records." : index === 1 ? "Read the supporting breakdown, not only the headline." : "Test a conservative and an optimistic scenario."}</p></div>)}</div>
-        </article>
-        <AdSlot position="sidebar" />
-      </div>
+      <article>
+        <p className="section-kicker">How to use it</p><h2 className="section-title">A useful estimate starts with honest inputs</h2><p className="section-copy">{tool.intro}</p>
+        <div className="mt-7 grid items-stretch gap-4 md:grid-cols-3">{useSteps.map((step) => <div key={step.number} className="flex min-h-[178px] flex-col rounded-xl border border-slate-200 bg-white p-5 transition duration-200 hover:border-blue-200 hover:shadow-card"><span className="font-display text-3xl font-bold tabular-nums text-blue-100" aria-hidden="true">{step.number}</span><h3 className="mt-3 text-sm font-bold text-ink">{step.title}</h3><p className="mt-2 text-xs leading-5 text-ink-muted">{step.copy}</p></div>)}</div>
+      </article>
 
       <div className="mt-14 grid gap-5 lg:grid-cols-2">
         <section className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-7"><p className="section-kicker">Methodology</p><h2 className="font-display text-xl font-bold text-ink">How the calculation works</h2><p className="mt-3 text-sm leading-7 text-ink-muted">{tool.methodology}</p></section>

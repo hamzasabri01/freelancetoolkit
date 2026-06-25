@@ -39,11 +39,11 @@ const startingPoints = [
 ];
 
 const workflowSteps = [
-  { title: "Start with your income goal", href: "/tools/freelance-hourly-rate-calculator" },
-  { title: "Add taxes, expenses, and time off", href: "/guides/freelance-hourly-rate-with-taxes-and-expenses" },
-  { title: "Estimate realistic billable hours", href: "/tools/billable-hours-calculator" },
-  { title: "Compare hourly and project pricing", href: "/guides/hourly-rate-vs-project-pricing" },
-  { title: "Review related guides before quoting", href: "/guides/freelance-pricing" },
+  { title: "Start with your income goal", href: "/tools/freelance-hourly-rate-calculator", cta: "Open calculator" },
+  { title: "Add taxes, expenses, and time off", href: "/guides/freelance-hourly-rate-with-taxes-and-expenses", cta: "Read rate guide" },
+  { title: "Estimate realistic billable hours", href: "/tools/billable-hours-calculator", cta: "Estimate billable hours" },
+  { title: "Compare hourly and project pricing", href: "/guides/hourly-rate-vs-project-pricing", cta: "Compare pricing models" },
+  { title: "Review related guides before quoting", href: "/guides/freelance-pricing", cta: "Read pricing guide" },
 ];
 
 const pricingBasics = [
@@ -141,7 +141,7 @@ export default function HomePage() {
           <h2 className="section-title">Different freelance pricing questions need different tools</h2>
           <p className="section-copy">Start with the calculator that matches your situation, then use the related guides to understand the assumptions before you quote.</p>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
           {startingPoints.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -165,13 +165,13 @@ export default function HomePage() {
             <h2 className="section-title">A simple workflow for better freelance pricing</h2>
             <p className="section-copy">Move from raw assumptions to a clearer quote by checking income, costs, capacity, pricing model, and guide context in order.</p>
           </div>
-          <div className="relative grid gap-4 lg:grid-cols-5">
+          <div className="relative grid items-stretch gap-4 lg:grid-cols-5">
             <div className="absolute left-6 right-6 top-8 hidden h-px bg-blue-100 lg:block" aria-hidden="true" />
             {workflowSteps.map((step, index) => (
               <Link key={step.href} href={step.href} className="group relative flex min-h-[190px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
                 <span className="grid size-10 place-items-center rounded-full bg-ink font-display text-sm font-bold text-white">{index + 1}</span>
                 <h3 className="mt-5 min-h-12 font-display text-base font-bold leading-6 text-ink group-hover:text-brand">{step.title}</h3>
-                <span className="mt-auto inline-flex items-center gap-1 pt-4 text-xs font-bold text-brand">Open next step <ArrowRight size={13} aria-hidden="true" /></span>
+                <span className="mt-auto inline-flex items-center gap-1 pt-4 text-xs font-bold text-brand">{step.cta} <ArrowRight size={13} aria-hidden="true" /></span>
               </Link>
             ))}
           </div>
@@ -188,7 +188,7 @@ export default function HomePage() {
               Read the full pricing guide <ArrowRight size={15} aria-hidden="true" />
             </Link>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid items-stretch gap-4 sm:grid-cols-2">
             {pricingBasics.map((item) => (
               <Link key={item.href} href={item.href} className="group flex min-h-[220px] flex-col rounded-2xl border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
                 <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
@@ -210,7 +210,7 @@ export default function HomePage() {
             </div>
             <Link href="/guides" className="inline-flex items-center gap-2 text-sm font-bold text-brand">All guides <ArrowRight size={15} aria-hidden="true" /></Link>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
             {guideCards.map((guide) => (
               <Link key={guide.href} href={guide.href} className="group flex min-h-[286px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
                 <span className="self-start rounded-full bg-brand-soft px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand">{guide.label}</span>
@@ -231,7 +231,7 @@ export default function HomePage() {
               <h2 className="mt-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">Built for practical estimates, not fake precision</h2>
               <p className="mt-4 text-sm leading-6 text-white/60">These tools provide planning estimates only. They are not financial, legal, accounting, employment, or tax advice.</p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid items-stretch gap-3 sm:grid-cols-2">
               {trustPoints.map(([title, copy]) => (
                 <div key={title} className="flex min-h-[142px] flex-col rounded-2xl border border-white/10 bg-white/[.05] p-4">
                   <ShieldCheck size={18} className="text-blue-300" aria-hidden="true" />
@@ -260,7 +260,7 @@ export default function HomePage() {
         <div>
           <p className="section-kicker">FAQ</p>
           <h2 className="section-title">Straight answers</h2>
-          <p className="section-copy">Every FAQ answer is rendered in the HTML and matches the homepage FAQ schema.</p>
+          <p className="section-copy">Quick answers about how the calculators work, privacy, and how to use the estimates.</p>
         </div>
         <FAQAccordion items={homeFaqs} />
       </section>
