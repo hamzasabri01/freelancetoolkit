@@ -20,6 +20,10 @@ const guideIllustrations: Record<string, string> = {
   "how-to-create-a-professional-invoice": "/illustrations/guide-invoice.svg",
   "common-freelance-expenses": "/illustrations/guide-expenses.svg",
   "what-are-billable-hours": "/illustrations/billable-hours.svg",
+  "how-many-billable-hours-should-a-freelancer-work": "/illustrations/billable-hours.svg",
+  "billable-hours-vs-non-billable-hours": "/illustrations/billable-hours.svg",
+  "freelance-hourly-rate-with-taxes-and-expenses": "/illustrations/freelance-rate.svg",
+  "hourly-rate-vs-project-pricing": "/illustrations/project-pricing.svg",
 };
 
 export function getToolIllustration(slug: string) {

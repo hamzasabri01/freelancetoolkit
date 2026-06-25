@@ -197,13 +197,87 @@ export const guideEnhancements: Record<string, GuideEnhancement> = {
     actionTips: ["Track billable and non-billable time separately.", "Clarify billable activities in the agreement.", "Review utilization monthly, not only at year end."],
     relatedGuideSlugs: ["how-to-calculate-your-freelance-hourly-rate", "how-to-price-a-freelance-project", "common-freelance-expenses"],
   },
+  "how-many-billable-hours-should-a-freelancer-work": {
+    takeaways: [
+      "A realistic freelance schedule usually has fewer billable hours than total working hours.",
+      "Sales, admin, revisions, learning, finance work, and client communication reduce billable capacity.",
+      "Billable-hours planning affects both hourly rates and fixed project prices.",
+    ],
+    scenarioTitle: "A 40-hour week that becomes 26 billable hours",
+    scenario: "A freelancer may plan 40 working hours but spend 14 hours on proposals, admin, calls, learning, and internal work. That leaves 26 billable hours before time off and holidays.",
+    formula: { title: "Weekly billable capacity", formula: "Billable Hours = Total Working Hours x Billable Utilization", description: "Use tracked time when possible. A planning percentage is only a starting assumption." },
+    comparison: pricingComparison,
+    mistakes: ["Planning for 40 billable hours every week.", "Ignoring sales and admin time.", "Forgetting leave, public holidays, and slow periods."],
+    actionTips: ["Track time for several weeks.", "Plan capacity conservatively.", "Use billable hours when setting rates."],
+    relatedGuideSlugs: ["what-are-billable-hours", "billable-hours-vs-non-billable-hours", "how-to-calculate-your-freelance-hourly-rate"],
+  },
+  "billable-hours-vs-non-billable-hours": {
+    takeaways: [
+      "Billable work can be charged to a client under the agreement.",
+      "Non-billable work is still necessary business work and must be funded by pricing.",
+      "Separating both categories makes rates, project margins, and capacity planning more reliable.",
+    ],
+    scenarioTitle: "A week split between client work and business work",
+    scenario: "A consultant may bill 24 hours to clients and spend 12 hours on proposals, admin, documentation, and marketing. Both matter, but only one appears on client invoices.",
+    formula: { title: "Utilization rate", formula: "Utilization Rate = Billable Hours / Total Working Hours", description: "Utilization shows what share of your time directly creates billable revenue." },
+    comparison: {
+      title: "Billable vs non-billable work",
+      leftLabel: "Billable",
+      rightLabel: "Non-billable",
+      rows: [
+        { label: "Client delivery", left: "Approved work for a client project.", right: "Internal experiments or portfolio updates." },
+        { label: "Meetings", left: "Client meetings included in scope.", right: "Sales calls, networking, and unpaid discovery." },
+        { label: "Business effect", left: "Usually creates invoiceable revenue.", right: "Supports the business and must be recovered through rates." },
+      ],
+    },
+    mistakes: ["Calling every client interaction billable without agreement.", "Treating non-billable time as wasted.", "Not tracking fixed-price delivery hours."],
+    actionTips: ["Define billable activities before work starts.", "Track both categories in simple labels.", "Use the split to improve quotes and scope."],
+    relatedGuideSlugs: ["what-are-billable-hours", "how-many-billable-hours-should-a-freelancer-work", "how-to-price-a-freelance-project"],
+  },
+  "freelance-hourly-rate-with-taxes-and-expenses": {
+    takeaways: [
+      "A sustainable freelance rate must cover personal income, business expenses, tax planning, time off, and non-billable work.",
+      "Taxes and expenses are planning inputs, not afterthoughts to handle once revenue arrives.",
+      "The calculator result should be reviewed with local professional advice when tax decisions matter.",
+    ],
+    scenarioTitle: "Why a target income needs a higher revenue target",
+    scenario: "A freelancer who wants 70,000 in personal income may need much more revenue after adding software, insurance, equipment, tax reserves, unpaid time, and time off.",
+    formula: { title: "Rate with taxes and expenses", formula: "Hourly Rate = (Target Income + Expenses + Tax Buffer + Safety Margin) / Billable Hours", description: "This is a planning framework only, not tax advice." },
+    comparison: {
+      title: "Salary-style rate vs freelance rate",
+      leftLabel: "Salary-style shortcut",
+      rightLabel: "Freelance planning rate",
+      rows: [
+        { label: "Costs", left: "Often ignores software, insurance, tools, and admin.", right: "Includes business expenses and operating costs." },
+        { label: "Taxes", left: "May assume payroll-like handling.", right: "Adds a planning reserve for independent work." },
+        { label: "Time", left: "Assumes every working hour earns money.", right: "Uses realistic billable hours." },
+      ],
+    },
+    mistakes: ["Using desired income as required revenue.", "Forgetting unpaid leave and slow weeks.", "Treating a tax buffer as professional tax advice."],
+    actionTips: ["List annual expenses before setting rates.", "Use conservative billable hours.", "Review the rate whenever costs or utilization changes."],
+    relatedGuideSlugs: ["how-to-calculate-your-freelance-hourly-rate", "how-much-should-i-charge-as-a-freelancer", "common-freelance-expenses"],
+  },
+  "hourly-rate-vs-project-pricing": {
+    takeaways: [
+      "Hourly pricing is useful when scope is uncertain or ongoing.",
+      "Project pricing works best when deliverables, assumptions, and revision rules are clear.",
+      "Many freelancers use an hourly baseline internally while selling fixed outcomes externally.",
+    ],
+    scenarioTitle: "The same work priced two ways",
+    scenario: "A freelancer can bill 30 hours at a clear hourly rate or quote a fixed project fee based on 30 hours, risk, expenses, margin, and revision limits. The safer model depends on scope clarity.",
+    formula: { title: "Fixed price from hourly baseline", formula: "Project Price = (Estimated Hours x Baseline Rate) + Expenses + Risk Buffer + Margin", description: "Use an hourly baseline internally even when the client sees a fixed fee." },
+    comparison: pricingComparison,
+    mistakes: ["Using fixed pricing before scope is clear.", "Selling hourly work when the client needs budget certainty.", "Forgetting revision limits in fixed project quotes."],
+    actionTips: ["Use hourly pricing for discovery and open-ended work.", "Use project pricing for defined outcomes.", "Document assumptions before quoting fixed fees."],
+    relatedGuideSlugs: ["how-to-price-a-freelance-project", "how-much-should-i-charge-as-a-freelancer", "what-are-billable-hours"],
+  },
 };
 
 export const toolEnhancements: Record<string, ToolEnhancement> = {
   "freelance-hourly-rate-calculator": {
     formula: guideEnhancements["how-to-calculate-your-freelance-hourly-rate"].formula!,
     mistakes: ["Entering a desired salary but leaving business expenses at zero.", "Using 100% billable utilization.", "Forgetting leave, holidays, and admin time."],
-    relatedGuideSlugs: ["how-to-calculate-your-freelance-hourly-rate", "how-much-should-i-charge-as-a-freelancer"],
+    relatedGuideSlugs: ["how-to-calculate-your-freelance-hourly-rate", "freelance-hourly-rate-with-taxes-and-expenses"],
     dataNote: "This tool can optionally use Nager.Date public holiday data, with an internal estimate if live data is unavailable.",
   },
   "salary-to-hourly-calculator": {
@@ -224,7 +298,7 @@ export const toolEnhancements: Record<string, ToolEnhancement> = {
   "project-pricing-calculator": {
     formula: guideEnhancements["how-to-price-a-freelance-project"].formula!,
     mistakes: guideEnhancements["how-to-price-a-freelance-project"].mistakes,
-    relatedGuideSlugs: ["how-to-price-a-freelance-project", "how-much-should-i-charge-as-a-freelancer"],
+    relatedGuideSlugs: ["how-to-price-a-freelance-project", "hourly-rate-vs-project-pricing"],
   },
   "invoice-generator": {
     formula: guideEnhancements["how-to-create-a-professional-invoice"].formula!,
@@ -244,7 +318,7 @@ export const toolEnhancements: Record<string, ToolEnhancement> = {
   "billable-hours-calculator": {
     formula: guideEnhancements["what-are-billable-hours"].formula!,
     mistakes: guideEnhancements["what-are-billable-hours"].mistakes,
-    relatedGuideSlugs: ["what-are-billable-hours", "how-to-calculate-your-freelance-hourly-rate"],
+    relatedGuideSlugs: ["what-are-billable-hours", "how-many-billable-hours-should-a-freelancer-work"],
     dataNote: "This tool can optionally exclude weekday public holidays using Nager.Date data or the internal fallback estimate.",
   },
   "late-payment-fee-calculator": {

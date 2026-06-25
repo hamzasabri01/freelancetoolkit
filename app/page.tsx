@@ -22,6 +22,15 @@ const featuredToolSlugs = [
   "invoice-generator",
 ] as const;
 const featuredTools = featuredToolSlugs.map((slug) => tools.find((tool) => tool.slug === slug)).filter((tool): tool is (typeof tools)[number] => Boolean(tool));
+const beginnerGuideSlugs = [
+  "how-much-should-i-charge-as-a-freelancer",
+  "how-to-calculate-your-freelance-hourly-rate",
+  "how-many-billable-hours-should-a-freelancer-work",
+  "freelance-hourly-rate-with-taxes-and-expenses",
+  "billable-hours-vs-non-billable-hours",
+  "hourly-rate-vs-project-pricing",
+] as const;
+const beginnerGuides = beginnerGuideSlugs.map((slug) => guides.find((guide) => guide.slug === slug)).filter((guide): guide is (typeof guides)[number] => Boolean(guide));
 export const homeFaqs = [
   { question: "Are all Freelance Work Tools calculators free?", answer: "Yes. Every calculator is free to use and requires no account." },
   { question: "Do the tools save my financial information?", answer: "No. Calculations run locally in your browser. The current site has no account or backend database." },
@@ -52,7 +61,32 @@ export default function HomePage() {
       <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
     ))}
     <HeroSection />
-    <section className="section-wrap py-14 sm:py-20"><div className="mb-8 flex flex-col gap-4 sm:mb-9 sm:flex-row sm:items-end sm:justify-between"><div><p className="section-kicker">Featured calculators</p><h2 className="section-title">Make the next number easier</h2><p className="section-copy">Built for real decisions, from setting your baseline rate to protecting project margins.</p></div><Link href="/tools" className="inline-flex min-h-10 items-center gap-2 self-start rounded-lg px-1 text-sm font-bold text-brand transition hover:text-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:self-auto">View all tools <ArrowRight size={15} aria-hidden="true" /></Link></div><ToolGrid items={featuredTools} /></section>
+    <section className="section-wrap py-14 sm:py-20"><div className="mb-8 flex flex-col gap-4 sm:mb-9 sm:flex-row sm:items-end sm:justify-between"><div><p className="section-kicker">Start with these calculators</p><h2 className="section-title">Make the next number easier</h2><p className="section-copy">Built for real decisions, from setting your baseline rate to protecting project margins, billable capacity, and invoice totals.</p></div><Link href="/tools" className="inline-flex min-h-10 items-center gap-2 self-start rounded-lg px-1 text-sm font-bold text-brand transition hover:text-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand sm:self-auto">View all tools <ArrowRight size={15} aria-hidden="true" /></Link></div><ToolGrid items={featuredTools} /></section>
+    <section className="border-y border-slate-200 bg-surface-soft py-14 sm:py-20">
+      <div className="section-wrap">
+        <div className="mb-8 max-w-3xl">
+          <p className="section-kicker">Freelance pricing basics</p>
+          <h2 className="section-title">Rates, billable hours, and project prices work together</h2>
+          <p className="section-copy">A sustainable freelance price starts with income goals, expenses, taxes, time off, and realistic billable hours. Then you choose whether hourly pricing, project pricing, or a scoped package fits the work.</p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {[
+            { title: "Calculate your baseline rate", copy: "Start with income, expenses, tax planning, and realistic billable time.", href: "/tools/freelance-hourly-rate-calculator" },
+            { title: "Check billable capacity", copy: "Estimate how many client-chargeable hours your schedule can actually support.", href: "/tools/billable-hours-calculator" },
+            { title: "Price fixed-scope projects", copy: "Turn hours, costs, risk, and margin into a clearer project quote.", href: "/tools/project-pricing-calculator" },
+          ].map((item) => (
+            <Link key={item.href} href={item.href} className="rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-blue-200 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+              <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-ink-muted">{item.copy}</p>
+              <span className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-brand">Open tool <ArrowRight size={13} aria-hidden="true" /></span>
+            </Link>
+          ))}
+        </div>
+        <Link href="/guides/freelance-pricing" className="mt-6 inline-flex min-h-10 items-center gap-2 rounded-lg px-1 text-sm font-bold text-brand transition hover:text-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+          Read the freelance pricing guide <ArrowRight size={15} aria-hidden="true" />
+        </Link>
+      </div>
+    </section>
     <section className="bg-surface-soft py-16 sm:py-20"><div className="section-wrap"><div className="mb-8"><p className="section-kicker">Browse by focus</p><h2 className="section-title">Find the right starting point</h2></div><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{categories.map((category) => <CategoryCard key={category.name} {...category} count={tools.filter((tool) => tool.category === category.name).length} />)}</div></div></section>
     <section className="section-wrap py-16 sm:py-20">
       <div className="mb-8 max-w-2xl">
@@ -63,17 +97,17 @@ export default function HomePage() {
       <ProcessSteps steps={homepageSteps} />
     </section>
     <section className="section-wrap py-16 sm:py-20"><div className="rounded-3xl bg-ink p-7 text-white sm:p-10"><div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center"><div><p className="text-[11px] font-bold uppercase tracking-[.16em] text-blue-400">Designed for clarity</p><h2 className="mt-3 font-display text-2xl font-bold tracking-tight sm:text-3xl">Useful answers, without the spreadsheet archaeology.</h2><p className="mt-4 max-w-xl text-sm leading-6 text-white/55">Every tool exposes its assumptions, updates instantly, and gives you a practical estimate you can reason about.</p></div><div className="grid gap-3 sm:grid-cols-3">{[[Zap, "Fast", "Instant browser-side results"], [LockKeyhole, "Private", "No account or server storage"], [BarChart3, "Clear", "Visible inputs and breakdowns"]].map(([Icon, title, copy]) => { const FeatureIcon = Icon as typeof Zap; return <div key={title as string} className="rounded-xl border border-white/10 bg-white/[.04] p-4"><FeatureIcon size={18} className="text-blue-400" /><h3 className="mt-3 text-sm font-bold">{title as string}</h3><p className="mt-1 text-xs leading-5 text-white/45">{copy as string}</p></div>; })}</div></div></div></section>
-    <section className="border-y border-slate-200 bg-surface-soft py-14 sm:py-20"><div className="section-wrap"><div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="section-kicker">Popular guides</p><h2 className="section-title">Understand the number behind the number</h2></div><Link href="/guides" className="inline-flex items-center gap-2 text-sm font-bold text-brand">All guides <ArrowRight size={15} aria-hidden="true" /></Link></div><div className="grid gap-5 md:grid-cols-3">{guides.slice(0, 3).map((guide) => <GuideVisualCard key={guide.slug} guide={guide} />)}</div></div></section>
+    <section className="border-y border-slate-200 bg-surface-soft py-14 sm:py-20"><div className="section-wrap"><div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="section-kicker">Popular guides for beginners</p><h2 className="section-title">Understand the number behind the number</h2><p className="section-copy">Start with pricing, taxes and expenses, billable hours, and the choice between hourly and fixed project pricing.</p></div><Link href="/guides" className="inline-flex items-center gap-2 text-sm font-bold text-brand">All guides <ArrowRight size={15} aria-hidden="true" /></Link></div><div className="grid gap-5 md:grid-cols-3">{beginnerGuides.slice(0, 6).map((guide) => <GuideVisualCard key={guide.slug} guide={guide} />)}</div></div></section>
     <section className="section-wrap py-16 sm:py-20">
       <div className="grid gap-5 lg:grid-cols-3">
         <ContentCallout title="Calculator methodology">
           Every calculator keeps formulas simple, transparent, and reusable. The result is a planning estimate with visible assumptions, not a financial guarantee.
         </ContentCallout>
-        <ContentCallout title="Supported countries and currencies">
-          Money tools support USD, GBP, EUR, CAD, and AUD, with country labels for the United States, United Kingdom, Canada, Australia, and several European markets.
+        <ContentCallout title="No account required">
+          Use the calculators without creating an account. They are designed for quick planning when you need a number before a proposal, invoice, or pricing review.
         </ContentCallout>
-        <ContentCallout title="API-powered estimates">
-          Exchange-rate references use Frankfurter public market data, and holiday-aware capacity tools use Nager.Date public holiday data with internal fallbacks.
+        <ContentCallout title="Privacy-friendly calculators">
+          Calculator entries are not stored in an account database. The tools are built for freelancers, consultants, and remote workers who want practical estimates with visible assumptions.
         </ContentCallout>
       </div>
     </section>

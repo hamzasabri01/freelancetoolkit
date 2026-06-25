@@ -74,6 +74,21 @@ export default function GuidesPage() {
           <div className="grid gap-5 lg:grid-cols-3">{featuredGuides.map((guide) => <GuideVisualCard key={guide.slug} guide={guide} />)}</div>
         </section>
 
+        <section className="mt-14 rounded-2xl border border-blue-100 bg-blue-50 p-6 sm:p-8">
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="section-kicker">Pricing hub</p>
+              <h2 className="font-display text-2xl font-bold tracking-tight text-ink">Freelance pricing, rates, billable hours, and project quotes</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-ink-muted">
+                Use the central pricing guide to move from rate calculation to project pricing, billable-hour planning, salary comparison, and invoice-ready payment terms.
+              </p>
+            </div>
+            <Link href="/guides/freelance-pricing" className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
+              Open pricing guide <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+        </section>
+
         <div className="mt-16 space-y-14">
           {categories.map((category) => {
             const categoryGuides = guides.filter((guide) => guide.category === category);
