@@ -24,7 +24,7 @@ export function createMetadata(title: string, description: string, path = ""): M
   const url = `${siteConfig.url}${path}`;
   const imagePath = path.startsWith("/guides") ? siteConfig.images.guides : path.startsWith("/tools") ? siteConfig.images.tools : siteConfig.images.default;
   const socialImage = {
-    url: imagePath,
+    url: new URL(imagePath, siteConfig.url).toString(),
     width: 1200,
     height: 630,
     alt: "Freelance Work Tools - clear calculators and guides for independent work",

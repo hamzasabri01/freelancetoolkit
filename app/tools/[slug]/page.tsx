@@ -52,6 +52,8 @@ export default async function CalculatorPage({ params }: Props) {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     isAccessibleForFree: true,
+    inLanguage: "en",
+    mainEntityOfPage: `${siteConfig.url}/tools/${tool.slug}`,
     publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   };

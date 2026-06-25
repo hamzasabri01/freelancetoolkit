@@ -69,6 +69,7 @@ export default function FreelancePricingHubPage() {
     name: "Freelance Pricing Guide",
     description: "Learn how to calculate freelance rates, billable hours, project pricing, taxes, expenses, and payment terms with free tools and practical guides.",
     url: `${siteConfig.url}/guides/freelance-pricing`,
+    inLanguage: "en",
     isPartOf: { "@type": "WebSite", name: siteConfig.name, url: siteConfig.url },
     publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
   };

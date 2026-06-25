@@ -123,7 +123,7 @@ export default function HomePage() {
     url: siteConfig.url,
     description: siteConfig.description,
     inLanguage: "en",
-    publisher: { "@type": "Organization", name: siteConfig.name },
+    publisher: { "@type": "Organization", name: siteConfig.name, url: siteConfig.url },
   };
   const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: homeFaqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) };
   const schemas = [organizationSchema, websiteSchema, faqSchema];

@@ -52,8 +52,14 @@ export default async function GuidePage({ params }: Props) {
     image: `${siteConfig.url}${guide.schemaImage}`,
     keywords: [guide.primaryKeyword, ...guide.secondaryKeywords],
     audience: guide.audience,
-    author: { "@type": "Organization", name: "Freelance Work Tools editorial" },
-    publisher: { "@type": "Organization", name: "Freelance Work Tools" },
+    inLanguage: "en",
+    author: { "@type": "Organization", name: `${siteConfig.name} editorial`, url: siteConfig.url },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: { "@type": "ImageObject", url: `${siteConfig.url}${siteConfig.icons.icon}` },
+    },
     mainEntityOfPage: `${siteConfig.url}/guides/${guide.slug}`,
   };
   const breadcrumbSchema = {

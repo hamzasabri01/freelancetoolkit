@@ -2,5 +2,81 @@ import Link from "next/link";
 import { ArrowRight, Eye, ShieldCheck, Sparkles } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { createMetadata } from "@/lib/site";
-export const metadata = createMetadata("About", "Why Freelance Work Tools builds clear, privacy-conscious calculators and guides for independent professionals.", "/about");
-export default function AboutPage() { const values = [[Eye, "Clarity over complexity", "Inputs, assumptions, data sources, and results should be easy to inspect."], [ShieldCheck, "Privacy by default", "Core calculations run without an account, database, or collection of financial entries."], [Sparkles, "Useful, not inflated", "We provide practical estimates and clearly avoid financial, tax, legal, or professional guarantees."]] as const; return <><PageHero eyebrow="About us" title="Better business judgment starts with clearer numbers" description="Freelance Work Tools helps independent professionals turn fuzzy decisions into transparent, useful estimates." /><section className="section-wrap py-14 sm:py-20"><div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p className="section-kicker">Our purpose</p><h2 className="section-title">Built for the business behind the craft</h2></div><div className="prose-copy"><p className="mt-0">Freelancers are expected to price, plan, sell, deliver, and manage cash flow—often without the operational support available inside a larger company. We build focused tools that make those decisions less opaque.</p><p>Calculators are educational planning aids, not professional advice. When public exchange-rate or holiday data improves an estimate, we identify the source and keep a safe fallback so the tool remains usable.</p><Link href="/tools" className="mt-6 inline-flex items-center gap-2">Explore the tools <ArrowRight size={15} aria-hidden="true" /></Link></div></div><div className="mt-14 grid gap-4 md:grid-cols-3">{values.map(([Icon, title, copy]) => <div key={title} className="rounded-2xl border border-slate-200 p-6"><span className="grid size-10 place-items-center rounded-xl bg-brand-soft text-brand"><Icon size={19} aria-hidden="true" /></span><h3 className="mt-4 font-bold text-ink">{title}</h3><p className="mt-2 text-sm leading-6 text-ink-muted">{copy}</p></div>)}</div></section></>; }
+
+export const metadata = createMetadata(
+  "About",
+  "Why Freelance Work Tools builds clear, privacy-conscious calculators and guides for independent professionals.",
+  "/about",
+);
+
+const values = [
+  [Eye, "Clarity over complexity", "Inputs, assumptions, data sources, and results should be easy to inspect."],
+  [ShieldCheck, "Privacy by default", "Core calculations run without an account, database, or collection of financial entries."],
+  [Sparkles, "Useful, not inflated", "We provide practical estimates and clearly avoid financial, tax, legal, or professional guarantees."],
+] as const;
+
+const boundaries = [
+  "Freelancers, consultants, contractors, and remote professionals can use the calculators to test pricing, capacity, invoice, and income assumptions.",
+  "The tools are planning aids. They make formulas and trade-offs visible, but they do not replace professional financial, legal, tax, accounting, or employment advice.",
+  "No account is required for core calculators, and financial entries are not stored in an account database.",
+] as const;
+
+export default function AboutPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="About us"
+        title="Better business judgment starts with clearer numbers"
+        description="Freelance Work Tools helps independent professionals turn fuzzy decisions into transparent, useful estimates."
+      />
+
+      <section className="section-wrap py-14 sm:py-20">
+        <div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <p className="section-kicker">Our purpose</p>
+            <h2 className="section-title">Built for the business behind the craft</h2>
+          </div>
+          <div className="prose-copy">
+            <p className="mt-0">
+              Freelancers are expected to price, plan, sell, deliver, and manage cash flow, often without the operational support available inside a larger company. We build focused tools that make those decisions less opaque.
+            </p>
+            <p>
+              Calculators are educational planning aids, not professional advice. When public exchange-rate or holiday data improves an estimate, we identify the source and keep a safe fallback so the tool remains usable.
+            </p>
+            <Link href="/tools" className="mt-6 inline-flex items-center gap-2">
+              Explore the tools <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-4 md:grid-cols-3">
+          {values.map(([Icon, title, copy]) => (
+            <div key={title} className="rounded-2xl border border-slate-200 p-6">
+              <span className="grid size-10 place-items-center rounded-xl bg-brand-soft text-brand">
+                <Icon size={19} aria-hidden="true" />
+              </span>
+              <h3 className="mt-4 font-bold text-ink">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-ink-muted">{copy}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-slate-200 bg-surface-soft py-14">
+        <div className="section-wrap grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <p className="section-kicker">How to read the results</p>
+            <h2 className="section-title">Transparent estimates, not guaranteed outcomes</h2>
+          </div>
+          <div className="grid gap-4">
+            {boundaries.map((copy) => (
+              <p key={copy} className="rounded-2xl border border-slate-200 bg-white p-5 text-sm leading-7 text-ink-muted">
+                {copy}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
