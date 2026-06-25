@@ -145,13 +145,13 @@ export default function HomePage() {
           {startingPoints.map((item, index) => {
             const Icon = item.icon;
             return (
-              <Link key={item.href} href={item.href} style={{ animationDelay: `${index * 70}ms` }} className="home-rise group rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_1px_2px_rgba(15,23,42,.03)] transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
+              <Link key={item.href} href={item.href} style={{ animationDelay: `${index * 70}ms` }} className="home-rise group flex min-h-[276px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_1px_2px_rgba(15,23,42,.03)] transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
                 <div className="grid size-11 place-items-center rounded-xl bg-brand-soft text-brand transition group-hover:scale-105 group-hover:bg-brand group-hover:text-white">
                   <Icon size={20} aria-hidden="true" />
                 </div>
                 <h3 className="mt-5 font-display text-lg font-bold leading-6 text-ink">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-ink-muted">{item.description}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand">{item.cta} <ArrowRight size={14} aria-hidden="true" /></span>
+                <p className="mt-3 flex-1 text-sm leading-6 text-ink-muted">{item.description}</p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-brand">{item.cta} <ArrowRight size={14} aria-hidden="true" /></span>
               </Link>
             );
           })}
@@ -168,10 +168,10 @@ export default function HomePage() {
           <div className="relative grid gap-4 lg:grid-cols-5">
             <div className="absolute left-6 right-6 top-8 hidden h-px bg-blue-100 lg:block" aria-hidden="true" />
             {workflowSteps.map((step, index) => (
-              <Link key={step.href} href={step.href} className="group relative rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+              <Link key={step.href} href={step.href} className="group relative flex min-h-[190px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
                 <span className="grid size-10 place-items-center rounded-full bg-ink font-display text-sm font-bold text-white">{index + 1}</span>
                 <h3 className="mt-5 min-h-12 font-display text-base font-bold leading-6 text-ink group-hover:text-brand">{step.title}</h3>
-                <span className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-brand">Open next step <ArrowRight size={13} aria-hidden="true" /></span>
+                <span className="mt-auto inline-flex items-center gap-1 pt-4 text-xs font-bold text-brand">Open next step <ArrowRight size={13} aria-hidden="true" /></span>
               </Link>
             ))}
           </div>
@@ -190,9 +190,10 @@ export default function HomePage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {pricingBasics.map((item) => (
-              <Link key={item.href} href={item.href} className="rounded-2xl border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+              <Link key={item.href} href={item.href} className="group flex min-h-[220px] flex-col rounded-2xl border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
                 <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-ink-muted">{item.copy}</p>
+                <p className="mt-3 flex-1 text-sm leading-6 text-ink-muted">{item.copy}</p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-brand">Read guide <ArrowRight size={14} aria-hidden="true" /></span>
               </Link>
             ))}
           </div>
@@ -211,11 +212,11 @@ export default function HomePage() {
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {guideCards.map((guide) => (
-              <Link key={guide.href} href={guide.href} className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
-                <span className="rounded-full bg-brand-soft px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand">{guide.label}</span>
+              <Link key={guide.href} href={guide.href} className="group flex min-h-[286px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+                <span className="self-start rounded-full bg-brand-soft px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand">{guide.label}</span>
                 <h3 className="mt-4 font-display text-lg font-bold leading-6 text-ink group-hover:text-brand">{guide.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-ink-muted">{guide.description}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand">Read guide <ArrowRight size={14} aria-hidden="true" /></span>
+                <p className="mt-3 flex-1 text-sm leading-6 text-ink-muted">{guide.description}</p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-brand">Read guide <ArrowRight size={14} aria-hidden="true" /></span>
               </Link>
             ))}
           </div>
@@ -232,7 +233,7 @@ export default function HomePage() {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {trustPoints.map(([title, copy]) => (
-                <div key={title} className="rounded-2xl border border-white/10 bg-white/[.05] p-4">
+                <div key={title} className="flex min-h-[142px] flex-col rounded-2xl border border-white/10 bg-white/[.05] p-4">
                   <ShieldCheck size={18} className="text-blue-300" aria-hidden="true" />
                   <h3 className="mt-3 text-sm font-bold text-white">{title}</h3>
                   <p className="mt-1 text-xs leading-5 text-white/50">{copy}</p>
