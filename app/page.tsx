@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BriefcaseBusiness, Calculator, Clock3, FileText, ShieldCheck, Sparkles, WalletCards } from "lucide-react";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { HeroSection } from "@/components/HeroSection";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { guides } from "@/data/guides";
 import { createMetadata, siteConfig } from "@/lib/site";
 
@@ -136,23 +137,25 @@ export default function HomePage() {
       <HeroSection />
 
       <section className="section-wrap py-14 sm:py-20">
-        <div className="mb-8 max-w-3xl">
+        <ScrollReveal className="mb-8 max-w-3xl">
           <p className="section-kicker">Choose your starting point</p>
           <h2 className="section-title">Different freelance pricing questions need different tools</h2>
           <p className="section-copy">Start with the calculator that matches your situation, then use the related guides to understand the assumptions before you quote.</p>
-        </div>
+        </ScrollReveal>
         <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
           {startingPoints.map((item, index) => {
             const Icon = item.icon;
             return (
-              <Link key={item.href} href={item.href} style={{ animationDelay: `${index * 70}ms` }} className="home-rise group flex min-h-[276px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_1px_2px_rgba(15,23,42,.03)] transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
-                <div className="grid size-11 place-items-center rounded-xl bg-brand-soft text-brand transition group-hover:scale-105 group-hover:bg-brand group-hover:text-white">
-                  <Icon size={20} aria-hidden="true" />
-                </div>
-                <h3 className="mt-5 font-display text-lg font-bold leading-6 text-ink">{item.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-6 text-ink-muted">{item.description}</p>
-                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-brand">{item.cta} <ArrowRight size={14} aria-hidden="true" /></span>
-              </Link>
+              <ScrollReveal key={item.href} delay={index * 80} className="h-full">
+                <Link href={item.href} className="group flex h-full min-h-[276px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_1px_2px_rgba(15,23,42,.03)] transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
+                  <div className="grid size-11 place-items-center rounded-xl bg-brand-soft text-brand transition group-hover:scale-105 group-hover:bg-brand group-hover:text-white">
+                    <Icon size={20} aria-hidden="true" />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-bold leading-6 text-ink">{item.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-ink-muted">{item.description}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-brand">{item.cta} <ArrowRight size={14} aria-hidden="true" /></span>
+                </Link>
+              </ScrollReveal>
             );
           })}
         </div>
@@ -160,19 +163,21 @@ export default function HomePage() {
 
       <section className="border-y border-slate-200 bg-surface-soft py-14 sm:py-20">
         <div className="section-wrap">
-          <div className="mb-8 max-w-3xl">
+          <ScrollReveal className="mb-8 max-w-3xl">
             <p className="section-kicker">Pricing workflow</p>
             <h2 className="section-title">A simple workflow for better freelance pricing</h2>
             <p className="section-copy">Move from raw assumptions to a clearer quote by checking income, costs, capacity, pricing model, and guide context in order.</p>
-          </div>
+          </ScrollReveal>
           <div className="relative grid items-stretch gap-4 lg:grid-cols-5">
             <div className="absolute left-6 right-6 top-8 hidden h-px bg-blue-100 lg:block" aria-hidden="true" />
             {workflowSteps.map((step, index) => (
-              <Link key={step.href} href={step.href} className="group relative flex min-h-[190px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
-                <span className="grid size-10 place-items-center rounded-full bg-ink font-display text-sm font-bold text-white">{index + 1}</span>
-                <h3 className="mt-5 min-h-12 font-display text-base font-bold leading-6 text-ink group-hover:text-brand">{step.title}</h3>
-                <span className="mt-auto inline-flex items-center gap-1 pt-4 text-xs font-bold text-brand">{step.cta} <ArrowRight size={13} aria-hidden="true" /></span>
-              </Link>
+              <ScrollReveal key={step.href} delay={index * 70} className="h-full">
+                <Link href={step.href} className="group relative flex h-full min-h-[190px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+                  <span className="grid size-10 place-items-center rounded-full bg-ink font-display text-sm font-bold text-white">{index + 1}</span>
+                  <h3 className="mt-5 min-h-12 font-display text-base font-bold leading-6 text-ink group-hover:text-brand">{step.title}</h3>
+                  <span className="mt-auto inline-flex items-center gap-1 pt-4 text-xs font-bold text-brand">{step.cta} <ArrowRight size={13} aria-hidden="true" /></span>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -180,21 +185,23 @@ export default function HomePage() {
 
       <section className="section-wrap py-14 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-start">
-          <div>
+          <ScrollReveal>
             <p className="section-kicker">Freelance pricing basics</p>
             <h2 className="section-title">Beginners often miss the costs behind the rate</h2>
             <p className="section-copy">Freelance pricing is a business model in miniature. You are not only replacing a salary; you are funding operations, sales time, admin, revisions, unpaid leave, and risk.</p>
             <Link href="/guides/freelance-pricing" className="mt-6 inline-flex min-h-10 items-center gap-2 rounded-lg px-1 text-sm font-bold text-brand transition hover:text-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
               Read the full pricing guide <ArrowRight size={15} aria-hidden="true" />
             </Link>
-          </div>
+          </ScrollReveal>
           <div className="grid items-stretch gap-4 sm:grid-cols-2">
-            {pricingBasics.map((item) => (
-              <Link key={item.href} href={item.href} className="group flex min-h-[220px] flex-col rounded-2xl border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
-                <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-6 text-ink-muted">{item.copy}</p>
-                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-brand">Read guide <ArrowRight size={14} aria-hidden="true" /></span>
-              </Link>
+            {pricingBasics.map((item, index) => (
+              <ScrollReveal key={item.href} delay={index * 80} className="h-full">
+                <Link href={item.href} className="group flex h-full min-h-[220px] flex-col rounded-2xl border border-slate-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+                  <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-ink-muted">{item.copy}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-brand">Read guide <ArrowRight size={14} aria-hidden="true" /></span>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -202,29 +209,31 @@ export default function HomePage() {
 
       <section className="border-y border-slate-200 bg-surface-soft py-14 sm:py-20">
         <div className="section-wrap">
-          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <ScrollReveal className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="section-kicker">Popular guides</p>
               <h2 className="section-title">Popular guides for smarter freelance pricing</h2>
               <p className="section-copy">Short paths into the topics that usually change the final number: rates, billable hours, expenses, taxes, and pricing model.</p>
             </div>
             <Link href="/guides" className="inline-flex items-center gap-2 text-sm font-bold text-brand">All guides <ArrowRight size={15} aria-hidden="true" /></Link>
-          </div>
+          </ScrollReveal>
           <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {guideCards.map((guide) => (
-              <Link key={guide.href} href={guide.href} className="group flex min-h-[286px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
-                <span className="self-start rounded-full bg-brand-soft px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand">{guide.label}</span>
-                <h3 className="mt-4 font-display text-lg font-bold leading-6 text-ink group-hover:text-brand">{guide.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-6 text-ink-muted">{guide.description}</p>
-                <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-brand">Read guide <ArrowRight size={14} aria-hidden="true" /></span>
-              </Link>
+            {guideCards.map((guide, index) => (
+              <ScrollReveal key={guide.href} delay={index * 60} className="h-full">
+                <Link href={guide.href} className="group flex h-full min-h-[286px] flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
+                  <span className="self-start rounded-full bg-brand-soft px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand">{guide.label}</span>
+                  <h3 className="mt-4 font-display text-lg font-bold leading-6 text-ink group-hover:text-brand">{guide.title}</h3>
+                  <p className="mt-3 flex-1 text-sm leading-6 text-ink-muted">{guide.description}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold text-brand">Read guide <ArrowRight size={14} aria-hidden="true" /></span>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       <section className="section-wrap py-14 sm:py-20">
-        <div className="rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(135deg,#0f172a,#172554)] p-6 text-white shadow-[0_24px_70px_rgba(15,23,42,.18)] sm:p-8 lg:p-10">
+        <ScrollReveal variant="scale-in" className="rounded-[1.75rem] border border-slate-200 bg-[linear-gradient(135deg,#0f172a,#172554)] p-6 text-white shadow-[0_24px_70px_rgba(15,23,42,.18)] sm:p-8 lg:p-10">
           <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[.16em] text-blue-300">Trust and privacy</p>
@@ -232,41 +241,47 @@ export default function HomePage() {
               <p className="mt-4 text-sm leading-6 text-white/60">These tools provide planning estimates only. They are not financial, legal, accounting, employment, or tax advice.</p>
             </div>
             <div className="grid items-stretch gap-3 sm:grid-cols-2">
-              {trustPoints.map(([title, copy]) => (
-                <div key={title} className="flex min-h-[142px] flex-col rounded-2xl border border-white/10 bg-white/[.05] p-4">
-                  <ShieldCheck size={18} className="text-blue-300" aria-hidden="true" />
-                  <h3 className="mt-3 text-sm font-bold text-white">{title}</h3>
-                  <p className="mt-1 text-xs leading-5 text-white/50">{copy}</p>
-                </div>
+              {trustPoints.map(([title, copy], index) => (
+                <ScrollReveal key={title} delay={index * 60} className="h-full" variant="fade-in">
+                  <div className="flex h-full min-h-[142px] flex-col rounded-2xl border border-white/10 bg-white/[.05] p-4">
+                    <ShieldCheck size={18} className="text-blue-300" aria-hidden="true" />
+                    <h3 className="mt-3 text-sm font-bold text-white">{title}</h3>
+                    <p className="mt-1 text-xs leading-5 text-white/50">{copy}</p>
+                  </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section className="section-wrap py-10 sm:py-14">
-        <div className="mb-6 flex items-center gap-2">
+        <ScrollReveal className="mb-6 flex items-center gap-2" variant="fade-in">
           <Sparkles size={18} className="text-brand" aria-hidden="true" />
           <h2 className="font-display text-xl font-bold text-ink">Useful for</h2>
-        </div>
+        </ScrollReveal>
         <div className="flex flex-wrap gap-2">
-          {useCases.map((useCase) => (
-            <span key={useCase} className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-ink-soft shadow-sm">{useCase}</span>
+          {useCases.map((useCase, index) => (
+            <ScrollReveal key={useCase} delay={index * 45} variant="fade-in">
+              <span className="block rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-ink-soft shadow-sm">{useCase}</span>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
-      <section className="section-wrap grid gap-10 py-14 sm:py-20 lg:grid-cols-[.7fr_1.3fr]">
-        <div>
-          <p className="section-kicker">FAQ</p>
-          <h2 className="section-title">Straight answers</h2>
-          <p className="section-copy">Quick answers about how the calculators work, privacy, and how to use the estimates.</p>
-        </div>
-        <FAQAccordion items={homeFaqs} />
+      <section className="section-wrap py-14 sm:py-20">
+        <ScrollReveal className="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+          <div>
+            <p className="section-kicker">FAQ</p>
+            <h2 className="section-title">Straight answers</h2>
+            <p className="section-copy">Quick answers about how the calculators work, privacy, and how to use the estimates.</p>
+          </div>
+          <FAQAccordion items={homeFaqs} />
+        </ScrollReveal>
       </section>
 
       <section className="section-wrap pb-16 sm:pb-20">
-        <div className="rounded-[1.75rem] border border-blue-100 bg-[radial-gradient(circle_at_top_left,#dbeafe,transparent_55%),linear-gradient(135deg,#ffffff,#eff6ff)] p-7 text-center shadow-sm sm:p-10">
+        <ScrollReveal variant="scale-in" className="rounded-[1.75rem] border border-blue-100 bg-[radial-gradient(circle_at_top_left,#dbeafe,transparent_55%),linear-gradient(135deg,#ffffff,#eff6ff)] p-7 text-center shadow-sm sm:p-10">
           <FileText className="mx-auto text-brand" size={28} aria-hidden="true" />
           <h2 className="mt-4 font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">Start with one clear estimate</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-ink-muted">Choose a calculator, enter your assumptions, and use the result as a starting point for smarter freelance pricing.</p>
@@ -278,7 +293,7 @@ export default function HomePage() {
               Browse all guides
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );
