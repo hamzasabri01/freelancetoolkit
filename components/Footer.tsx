@@ -16,7 +16,7 @@ export function Footer() {
         <div className="grid gap-x-8 gap-y-10 border-b border-white/10 pb-10 sm:grid-cols-2 sm:pb-12 lg:grid-cols-3 xl:grid-cols-[1.6fr_1fr_1fr_1fr_1fr]">
           <div className="sm:col-span-2 lg:col-span-1">
             <Logo inverse />
-            <p className="mt-4 max-w-xs text-sm leading-6 text-white/60">Clear, free tools that help independent professionals make better business decisions.</p>
+            <p className="mt-4 max-w-xs text-sm leading-6 text-white/60">Clear calculators and guides that help independent professionals make better business decisions.</p>
           </div>
           {columns.map((column) => (
             <nav key={column.title} aria-labelledby={`footer-${column.title.toLowerCase()}`}>

@@ -3,6 +3,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { Logo } from "@/components/Logo";
+import { Footer } from "@/components/Footer";
 import { homeFaqs } from "@/app/page";
 
 const homepageSource = readFileSync("app/page.tsx", "utf8");
@@ -18,6 +19,15 @@ describe("homepage polish regressions", () => {
     expect(logo).not.toContain(">Free<");
     expect(logo).not.toContain("Freelance Work Tools Free");
     expect(inverseLogo).not.toContain(">Free<");
+  });
+
+  it("does not place free copy next to the footer brand", () => {
+    const footer = renderToStaticMarkup(createElement(Footer));
+
+    expect(footer).toContain("Freelance");
+    expect(footer).toContain("Work Tools");
+    expect(footer).not.toContain("Freelance Work Tools Free");
+    expect(footer).not.toContain("Clear, free tools");
   });
 
   it("keeps homepage FAQ copy user-facing", () => {
