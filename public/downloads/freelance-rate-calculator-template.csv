@@ -1,0 +1,11 @@
+Section,Input,Example value,Notes
+Income,Desired annual income,75000,Personal income target before business planning adjustments
+Expenses,Estimated annual expenses,8000,Software equipment insurance payment fees training and other business costs
+Taxes,Tax percentage,25,Planning percentage only not tax advice
+Schedule,Working weeks per year,47,Total weeks after planned time off
+Schedule,Hours worked per week,40,Total work capacity including non-billable work
+Schedule,Billable hours per week,24,Client-chargeable hours only
+Schedule,Time off weeks,5,Vacation holidays recovery or planned non-working weeks
+Revenue,Required yearly revenue,112050,Desired income plus expenses tax planning buffer and safety margin
+Rate,Estimated hourly rate,101.86,Required yearly revenue divided by annual billable hours
+Project pricing,Project pricing notes,Add direct expenses risk buffer and margin,Use hourly baseline as internal planning input

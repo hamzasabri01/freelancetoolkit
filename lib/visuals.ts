@@ -14,6 +14,7 @@ const toolIllustrations: Record<string, string> = {
 const guideIllustrations: Record<string, string> = {
   "how-much-should-i-charge-as-a-freelancer": "/illustrations/guide-pricing.svg",
   "how-to-calculate-your-freelance-hourly-rate": "/illustrations/freelance-rate.svg",
+  "free-freelance-rate-spreadsheet": "/illustrations/freelance-rate.svg",
   "salary-to-hourly-rate-explained": "/illustrations/salary-hourly.svg",
   "contractor-vs-employee": "/illustrations/contractor-employee.svg",
   "how-to-price-a-freelance-project": "/illustrations/project-pricing.svg",

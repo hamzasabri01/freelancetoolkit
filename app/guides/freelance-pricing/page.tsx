@@ -111,6 +111,21 @@ export default function FreelancePricingHubPage() {
           ))}
         </div>
 
+        <section className="mt-8 rounded-2xl border border-blue-100 bg-brand-soft/60 p-6 sm:p-7">
+          <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="section-kicker">Spreadsheet asset</p>
+              <h2 className="font-display text-xl font-bold text-ink">Need a spreadsheet version?</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-ink-muted">
+                Download the free freelance rate calculator spreadsheet to organize income goals, expenses, billable hours, time off, tax planning, and project pricing assumptions.
+              </p>
+            </div>
+            <Link href="/guides/free-freelance-rate-spreadsheet" className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
+              Download the free spreadsheet <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+        </section>
+
         <section className="mt-14">
           <div className="mb-7">
             <p className="section-kicker">Calculators</p>

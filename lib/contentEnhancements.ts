@@ -66,7 +66,19 @@ export const guideEnhancements: Record<string, GuideEnhancement> = {
     formula: { title: "Freelance hourly rate formula", formula: "Hourly Rate = Total Annual Revenue Needed / Annual Billable Hours", description: "Total Annual Revenue Needed = Desired Income + Expenses + Tax Buffer + Profit Buffer. This is a planning method, not tax, legal, or financial advice." },
     mistakes: ["Using salary divided by 2,080 as the freelance rate.", "Ignoring unpaid work such as proposals, admin, communication, and learning.", "Forgetting expenses or treating gross revenue as personal income.", "Setting rates emotionally instead of using assumptions.", "Not revising rates as skills, demand, and costs change.", "Using one rate for all projects regardless of risk, urgency, or value.", "Not building margin for slow periods, late payments, and reinvestment."],
     actionTips: ["Write down desired income and business expenses before choosing a rate.", "Use conservative billable-hours assumptions.", "Run minimum and target scenarios in the calculator.", "Compare the baseline with project value and market positioning.", "Convert the baseline into a day rate or project price when the work is not best sold hourly.", "Review the rate quarterly as utilization, demand, and expenses change."],
-    relatedGuideSlugs: ["how-much-should-i-charge-as-a-freelancer", "common-freelance-expenses", "what-are-billable-hours"],
+    relatedGuideSlugs: ["free-freelance-rate-spreadsheet", "how-much-should-i-charge-as-a-freelancer", "common-freelance-expenses"],
+  },
+  "free-freelance-rate-spreadsheet": {
+    takeaways: [
+      "The spreadsheet gives freelancers a lightweight offline planning template for rates, billable hours, expenses, taxes, time off, and project pricing assumptions.",
+      "It is designed to work alongside the online calculators, not replace professional tax, legal, accounting, or financial advice.",
+      "The download is a simple CSV so it can open in common spreadsheet tools without adding heavy site dependencies.",
+    ],
+    scenarioTitle: "Planning a rate with spreadsheet assumptions",
+    scenario: "A freelancer can enter desired annual income, estimated expenses, tax percentage, working weeks, time off, hours worked, and billable hours. The spreadsheet helps organize the assumptions before testing final numbers in the online calculators.",
+    mistakes: ["Treating the spreadsheet as tax advice.", "Using optimistic billable hours without accounting for sales, admin, learning, and time off.", "Forgetting project margin when moving from an hourly baseline to a fixed project price."],
+    actionTips: ["Download the CSV and duplicate it before editing.", "Run conservative and target scenarios.", "Use the online calculators to check the spreadsheet assumptions.", "Review your assumptions whenever expenses, workload, or pricing model changes."],
+    relatedGuideSlugs: ["how-to-calculate-your-freelance-hourly-rate", "freelance-hourly-rate-with-taxes-and-expenses", "how-many-billable-hours-should-a-freelancer-work"],
   },
   "salary-to-hourly-rate-explained": {
     takeaways: [

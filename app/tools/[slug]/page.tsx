@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
 import { CalculatorLayout } from "@/components/CalculatorLayout";
@@ -16,6 +17,7 @@ import { toolEnhancements } from "@/lib/contentEnhancements";
 import { createMetadata, siteConfig } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
+const spreadsheetAssetToolSlugs = new Set(["freelance-hourly-rate-calculator", "billable-hours-calculator"]);
 
 export function generateStaticParams() { return tools.map(({ slug }) => ({ slug })); }
 
@@ -63,6 +65,7 @@ export default async function CalculatorPage({ params }: Props) {
     { number: "02", title: "Review the estimate", copy: "Read the supporting breakdown, not only the headline." },
     { number: "03", title: "Adjust your assumptions", copy: "Test a conservative and an optimistic scenario." },
   ];
+  const showSpreadsheetAsset = spreadsheetAssetToolSlugs.has(tool.slug);
 
   return <>
     {schemas.map((schema, index) => (
@@ -89,7 +92,17 @@ export default async function CalculatorPage({ params }: Props) {
 
       <section className="mt-5 rounded-2xl border border-slate-200 bg-white p-6 sm:p-7"><p className="section-kicker">Better inputs</p><h2 className="font-display text-xl font-bold text-ink">Tips for a more useful result</h2><ul className="mt-4 grid gap-3 md:grid-cols-3">{tool.tips.map((tip) => <li key={tip} className="rounded-xl bg-surface-soft p-4 text-sm leading-6 text-ink-soft">{tip}</li>)}</ul></section>
 
-      <div className="my-10 sm:my-12"><AdSlot position="in-content" /></div>
+      {showSpreadsheetAsset && (
+        <section className="mt-5 rounded-2xl border border-blue-100 bg-brand-soft/60 p-6 sm:p-7">
+          <p className="section-kicker">Spreadsheet version</p>
+          <h2 className="font-display text-xl font-bold text-ink">Need a spreadsheet version?</h2>
+          <p className="mt-3 text-sm leading-7 text-ink-muted">Download the free freelance rate calculator spreadsheet to plan income, expenses, time off, billable hours, and project pricing assumptions offline.</p>
+          <Link href="/guides/free-freelance-rate-spreadsheet" className="mt-5 inline-flex min-h-10 items-center rounded-lg bg-brand px-4 py-2 text-sm font-bold text-white transition hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
+            Download the free spreadsheet
+          </Link>
+        </section>
+      )}
+
       <section className="mt-14">
         <div className="mb-7"><p className="section-kicker">Learn the context</p><h2 className="section-title">Related guides</h2></div>
         <div className="grid gap-5 md:grid-cols-2">{relatedGuides.map((guide) => <GuideVisualCard key={guide.slug} guide={guide} />)}</div>

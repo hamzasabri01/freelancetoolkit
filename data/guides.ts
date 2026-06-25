@@ -65,6 +65,12 @@ const seoProfiles: Record<string, Pick<Guide, "primaryKeyword" | "secondaryKeywo
     searchIntent: "The user wants a step-by-step calculation method, not just general pricing advice.",
     audience: "Freelancers who want a step-by-step rate calculation framework.",
   },
+  "free-freelance-rate-spreadsheet": {
+    primaryKeyword: "free freelance rate calculator spreadsheet",
+    secondaryKeywords: ["freelance rate spreadsheet", "freelance hourly rate spreadsheet", "freelance pricing spreadsheet", "billable hours spreadsheet", "freelance project pricing template", "freelance rate calculator template"],
+    searchIntent: "The user wants a downloadable spreadsheet template for planning freelance rates, billable hours, expenses, taxes, and project pricing assumptions.",
+    audience: "Freelancers, consultants, remote workers, developers, designers, writers, marketers, virtual assistants, and independent professionals who want a lightweight planning spreadsheet.",
+  },
   "salary-to-hourly-rate-explained": {
     primaryKeyword: "salary to hourly rate",
     secondaryKeywords: ["salary to hourly calculator", "annual salary to hourly", "hourly to salary", "convert salary to hourly", "salary vs hourly pay", "40 hours per week salary to hourly", "yearly salary to hourly rate", "take-home pay estimate"],
@@ -136,6 +142,7 @@ const guideContentOverrides: Partial<Record<string, GuideContentOverride>> = {
   "billable-hours-vs-non-billable-hours": { showGeneratedBlocks: false },
   "freelance-hourly-rate-with-taxes-and-expenses": { showGeneratedBlocks: false },
   "hourly-rate-vs-project-pricing": { showGeneratedBlocks: false },
+  "free-freelance-rate-spreadsheet": { showGeneratedBlocks: false },
   "salary-to-hourly-rate-explained": {
     formulaCards: [{ title: "Salary to hourly rate formula", formula: "Hourly Rate = Annual Salary / (Hours Per Week x Weeks Per Year)", description: "Use gross annual salary and the paid or working weeks that match the comparison you are making. The output is a gross hourly equivalent, not a take-home pay estimate." }],
     comparisonTables: [{
@@ -352,6 +359,27 @@ const guideInputs: GuideInput[] = [
       { question: "How do I convert hourly to day rate?", answer: "A simple method is: Day Rate = Hourly Rate x Billable Hours Per Day. Define what a day includes so the day rate does not become unlimited availability." },
       { question: "Is hourly pricing better than project pricing?", answer: "Hourly pricing is useful for uncertain scope and ongoing support. Project pricing can work better for clear deliverables and outcomes, but it needs scope control and change-request rules." },
       { question: "How often should I update my rate?", answer: "Review your rate quarterly or whenever your expenses, utilization, demand, positioning, or service complexity changes. You do not always need to raise it, but you should know whether it still works." },
+    ],
+  },
+  {
+    slug: "free-freelance-rate-spreadsheet", title: "Free Freelance Rate Calculator Spreadsheet", metaTitle: "Free Freelance Rate Calculator Spreadsheet", category: "Freelance rates", readTime: "9 min read", publishedAt: "2026-06-25",
+    excerpt: "Download a lightweight CSV spreadsheet for planning freelance hourly rates, billable hours, expenses, taxes, time off, and project pricing assumptions.",
+    metaDescription: "Download a free freelance rate calculator spreadsheet to estimate hourly rates, billable hours, expenses, taxes, time off, and project pricing assumptions.",
+    relatedToolSlugs: ["freelance-hourly-rate-calculator", "billable-hours-calculator", "project-pricing-calculator", "salary-to-hourly-calculator"],
+    sections: [
+      { id: "what-it-includes", title: "What the spreadsheet helps calculate", paragraphs: ["The free freelance rate calculator spreadsheet is a simple CSV template for organizing the assumptions behind a sustainable freelance rate. It helps you think through desired annual income, estimated annual expenses, tax planning percentage, working weeks, time off, weekly hours, billable hours, and project pricing notes.", "The spreadsheet is intentionally lightweight. It is not a locked financial model, an accounting system, or a tax planner. It gives you a clean place to collect assumptions before using the online calculators or building your own more detailed workbook.", "Use it when you want an offline copy of the same planning logic behind the rate, billable-hours, and project-pricing tools."], links: [{ label: "Download the free spreadsheet", href: "/downloads/freelance-rate-calculator-template.csv" }, { label: "Use the hourly rate calculator", href: "/tools/freelance-hourly-rate-calculator" }] },
+      { id: "who-it-is-for", title: "Who it is for", paragraphs: ["The template is useful for freelancers, consultants, remote workers, developers, designers, writers, marketers, virtual assistants, and independent contractors who want a clearer view of the assumptions behind their rates.", "It can help beginners avoid copying a random market rate without knowing whether it covers unpaid time, expenses, taxes, and business risk. It can also help experienced freelancers review whether their current pricing still fits their workload and costs."], bullets: ["Freelance developers", "Designers", "Writers", "Consultants", "Marketers", "Virtual assistants", "Remote workers", "Independent contractors"] },
+      { id: "inputs", title: "Inputs included in the template", paragraphs: ["The CSV includes example rows for desired annual income, estimated annual expenses, tax percentage, working weeks per year, hours worked per week, billable hours per week, time off weeks, required yearly revenue, estimated hourly rate, and project pricing notes.", "Because it is a CSV, formulas may need to be added or adjusted in your own spreadsheet app. That keeps the download simple and portable while avoiding heavy dependencies or a fake spreadsheet experience."], bullets: ["Desired annual income", "Estimated annual expenses", "Tax percentage", "Working weeks per year", "Hours worked per week", "Billable hours per week", "Time off weeks", "Required yearly revenue", "Estimated hourly rate", "Project pricing notes"] },
+      { id: "use-with-calculators", title: "Use it with the online calculators", paragraphs: ["The spreadsheet is best used alongside the online calculators. Start by filling the spreadsheet with your rough assumptions, then test those assumptions in the Freelance Hourly Rate Calculator, Billable Hours Calculator, Project Pricing Calculator, or Salary to Hourly Calculator.", "This workflow helps you compare conservative and target scenarios without pretending that one number is final. Your real pricing still depends on scope, market, positioning, urgency, client value, and local rules."], links: [{ label: "Estimate billable hours", href: "/tools/billable-hours-calculator" }, { label: "Estimate project pricing", href: "/tools/project-pricing-calculator" }, { label: "Compare salary context", href: "/tools/salary-to-hourly-calculator" }] },
+      { id: "limitations", title: "Important limitations", paragraphs: ["The spreadsheet is an educational planning aid. It does not provide financial, legal, tax, accounting, or employment advice. Tax treatment, deductions, contract terms, classification rules, and business obligations vary by jurisdiction and personal situation.", "Use the spreadsheet to make assumptions visible, then verify important decisions with qualified professionals when tax, legal, accounting, or employment consequences matter. The goal is better planning, not fake precision."] },
+      { id: "related-reading", title: "Related reading", paragraphs: ["If you want more context before editing the spreadsheet, start with the freelance pricing hub, the hourly rate calculation guide, the tax and expense guide, the billable-hours guide, and the hourly-versus-project-pricing comparison."], links: [{ label: "Freelance pricing guide", href: "/guides/freelance-pricing" }, { label: "Calculate your freelance hourly rate", href: "/guides/how-to-calculate-your-freelance-hourly-rate" }, { label: "Include taxes and expenses", href: "/guides/freelance-hourly-rate-with-taxes-and-expenses" }, { label: "Plan billable hours", href: "/guides/how-many-billable-hours-should-a-freelancer-work" }, { label: "Compare hourly and project pricing", href: "/guides/hourly-rate-vs-project-pricing" }] },
+    ],
+    faqs: [
+      { question: "Is the freelance rate spreadsheet free?", answer: "Yes. The CSV template is free to download and use for personal freelance planning." },
+      { question: "Does the spreadsheet replace professional tax advice?", answer: "No. It is an educational planning tool only. Tax, legal, accounting, and employment questions should be reviewed with qualified professionals when they matter." },
+      { question: "What inputs do I need before using it?", answer: "Start with your desired annual income, estimated annual expenses, tax planning percentage, working weeks, time off, hours worked per week, and realistic billable hours." },
+      { question: "Can I use it with the online calculators?", answer: "Yes. The spreadsheet is designed to organize assumptions before testing them in the Freelance Hourly Rate Calculator, Billable Hours Calculator, Project Pricing Calculator, and Salary to Hourly Calculator." },
+      { question: "Is it useful for project pricing?", answer: "Yes. The template includes project pricing notes so you can connect your hourly baseline to fixed-price work, risk buffers, direct expenses, and margin assumptions." },
     ],
   },
   {
