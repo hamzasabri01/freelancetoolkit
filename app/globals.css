@@ -21,3 +21,46 @@
   .prose-copy ul { @apply mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-ink-muted; }
   .prose-copy a { @apply rounded-sm font-semibold text-brand underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand; }
 }
+
+@layer utilities {
+  .home-rise {
+    animation: home-rise .62s ease-out both;
+  }
+
+  .home-hero-glow {
+    position: absolute;
+    z-index: -1;
+    width: 18rem;
+    height: 18rem;
+    border-radius: 9999px;
+    filter: blur(44px);
+    animation: home-float 8s ease-in-out infinite;
+  }
+}
+
+@keyframes home-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes home-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-rise,
+  .home-hero-glow {
+    animation: none;
+  }
+}

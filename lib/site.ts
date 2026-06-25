@@ -5,7 +5,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.NODE_ENV === "d
 export const siteConfig = {
   name: "Freelance Work Tools",
   defaultTitle: "Freelance Work Tools | Free Calculators for Freelancers",
-  description: "Free calculators and practical guides for freelancers, consultants, and remote professionals. Estimate rates, project prices, billable hours, invoices, and real income.",
+  description: "Free calculators and practical guides for freelancers, consultants, and remote professionals. Estimate hourly rates, project prices, billable hours, invoices, and real income.",
   url: siteUrl.replace(/\/$/, ""),
   locale: "en_US",
   category: "business",
